@@ -38,3 +38,7 @@ Yet another option would be to create a capacitance water level meter. Expected 
 # Breadboard
 
 ![Breadboard](docs/water-mole_bb.png)
+
+# Disclaimer
+
+I just realized that this project is also a C++ learning playground for me. I am a Java developer and I havn't code C++ for last 13 years. Since then I am doing full time Java and some Javascript. The code is not perfect but I don't want to fallback to C as code written as classes is more natural for me.

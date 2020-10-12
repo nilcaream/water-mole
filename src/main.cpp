@@ -1,10 +1,19 @@
 #include "Arduino.h"
-#include "LiquidCrystal_I2C.h"
+#include "Display.h"
 
-void setup() {
-  // put your setup code here, to run once:
+Display *display;
+
+void setup()
+{
+  display = new Display(0x27, 16, 2);
+  display->printMessage("Water Mole Test");
 }
 
-void loop() {
-  // put your main code here, to run repeatedly:
+void loop()
+{
+  for (int i = 0; i < 4; i++)
+  {
+    display->printProgress(i);
+    delay(1000);
+  }
 }
