@@ -39,6 +39,12 @@ Yet another option would be to create a capacitance water level meter. Expected 
 
 ![Breadboard](docs/water-mole_bb.png)
 
+# Mole circuit 
+
+Piezo electric buzzer is denoted as 1M Ohm resistor. It is in series connection with 220 Ohm resistor in case buzzer gets shorted.
+
+![Mole circuit](docs/mole-circuit.png)
+
 # Disclaimer
 
 I just realized that this project is also a C++ learning playground for me. I am a Java developer and I havn't code C++ for last 13 years. Since then I am doing full time Java and some Javascript. The code is not perfect but I don't want to fallback to C as code written as classes is more natural for me.
