@@ -11,7 +11,7 @@ void Logger::message(const char *format, ...)
     va_end(args);
 
     char message[256];
-    sprintf(message, "Log %10lu : %s\n", time, buffer);
+    sprintf(message, "%8lu : %s\n", time, buffer);
 
     Serial.print(message);
 }

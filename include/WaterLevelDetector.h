@@ -16,7 +16,7 @@ private:
     byte analogPin;
     byte digitalPins[16];
     byte digitalPinsNumber = 0;
-    int results[];
+    int results[16];
 };
 
 #endif

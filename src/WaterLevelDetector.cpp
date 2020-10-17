@@ -16,14 +16,14 @@ byte WaterLevelDetector::getDigitalPinsNumber()
 void WaterLevelDetector::addDigitalPin(byte pin)
 {
     this->digitalPins[this->digitalPinsNumber] = pin;
+    Logger::message("Added water digital pin %d as #%d", pin, this->digitalPinsNumber);
     this->digitalPinsNumber++;
-    Logger::message("Added water digital pin %d", pin);
 }
 
 void WaterLevelDetector::refresh()
 {
-    const int iterations = 16;
-    const int sleep = 10;
+    const int iterations = 64;
+    const int sleep = 20;
 
     for (int pinNumber = 0; pinNumber < this->digitalPinsNumber; pinNumber++)
     {
@@ -55,9 +55,9 @@ void WaterLevelDetector::refresh()
         // revert
         pinMode(this->digitalPins[pinNumber], INPUT);
 
-        // update state and log
-        this->results[pinNumber] = valueMin;
-        Logger::message("Water level pin %d min %d (avg %d, max %d)", valueMin, valueAverage, valueMax);
+        // update state and log. Scale to 0-99;
+        this->results[pinNumber] = (int)(99 * valueAverage / 1024.0);
+        Logger::message("Water level pin #%d: %2d (%d-%d-%d)", pinNumber, this->results[pinNumber], valueMin, valueAverage, valueMax);
     }
 }
 

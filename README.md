@@ -27,6 +27,27 @@ Electronics are set in home and are connected with external wires by LAN cable.
 * Micro USB as power source.
 * RJ45 keystone as output for buzzer, analog in and digital water level outputs.
 
+# Pins
+
+Mandatory read:
+
+* https://randomnerdtutorials.com/esp8266-pinout-reference-gpios/
+* https://rabbithole.wwwdotorg.org/2017/03/28/esp8266-gpio.html
+
+GPIO
+
+* D1 / GPIO5 - SCL (for LCD)
+* D2 / GPIO4 - SDA (for LCD)
+* D5 / GPIO14 - water level 1
+* D6 / GPIO12 - water level 2
+* D7 / GPIO13 - water level 3
+* D8 / GPIO15 - water level 4 (IN: GND; boot fails if HIGH)
+
+TODO - figure out other pins
+
+* D3 / GPIO0 - buzzer (BJT base; LOW fails boot)
+* TX / GPIO1 - buzzer (BJT base)
+
 # Operation logic
 
 The non-trivial part of the project is water level detection. This is done by reading the ground voltage on analog in pin (A0) by providing TTL output (LOW) from several digital out pins (D5 to D9).

@@ -26,21 +26,29 @@ void Display::enable(bool state)
     }
 }
 
-void Display::printMessage(const char *text)
+void Display::clear(int rowNumber)
 {
-    char blank[width];
+    char blank[width + 1];
     for (int i = 0; i < width; i++)
     {
         blank[i] = ' ';
     }
-    lcd->setCursor(0, 0);
+    blank[width] = '\0';
+
+    lcd->setCursor(0, rowNumber);
     lcd->print(blank);
+}
+
+void Display::printMessage(const char *text)
+{
+    this->clear(0);
+    lcd->setCursor(0, 0);
     lcd->print(text);
 }
 
 void Display::printProgress(int value)
 {
-    char text[width];
+    char text[width + 1];
     // TODO remove hardcoded bar size of 4
     int barWidth = value * 4;
 
@@ -48,7 +56,15 @@ void Display::printProgress(int value)
     {
         text[i] = i < barWidth ? 'X' : ' ';
     }
+    text[width] = '\0';
 
+    lcd->setCursor(0, 1);
+    lcd->print(text);
+}
+
+void Display::printProgress(const char *text)
+{
+    this->clear(1);
     lcd->setCursor(0, 1);
     lcd->print(text);
 }
