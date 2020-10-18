@@ -22,8 +22,8 @@ void WaterLevelDetector::addDigitalPin(byte pin)
 
 void WaterLevelDetector::refresh()
 {
-    const int iterations = 64;
-    const int sleep = 20;
+    const int iterations = 16;
+    const int sleep = 4;
 
     for (int pinNumber = 0; pinNumber < this->digitalPinsNumber; pinNumber++)
     {

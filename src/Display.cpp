@@ -12,6 +12,11 @@ Display::Display(byte address, int width, int height)
     lcd->noCursor();
 }
 
+int Display::getWidth()
+{
+    return this->width;
+}
+
 void Display::enable(bool state)
 {
     if (state)

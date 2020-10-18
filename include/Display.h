@@ -18,6 +18,7 @@ public:
     void printProgress(int value);
     void printProgress(const char *text);
     void printMessage(const char *text);
+    int getWidth();
 };
 
 #endif

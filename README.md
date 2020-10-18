@@ -4,7 +4,7 @@ Arduino project of piezoelectric mole repellent and waste water level monitor.
 
 These are actually two separate projects fit into one package. First is a mole repellent that uses parallel array of passive piezoelectric buzzers. Every few minutes (or less) set of random tones is emitted. Buzzers are sealed and digged in the ground (actually in mole tunnels). This should work as most mole repellents work this way.
 
-Second project is a waste water meter. A sewage tank will contain a set of wires at different fill levels e.g. at 5%, 25%, 50%, 80%, 90%, 95%. Information about which level is reached is displayed on LCD screed. Motion detector is used to set backlit and enable display.
+Second project is a waste water meter. A sewage tank will contain a set of wires at different fill levels e.g. at 5%, 50%, 80%, 90%, 95%. Information about which level is reached is displayed on LCD screed. Motion detector is used to set backlit and enable display.
 
 Electronics are set in home and are connected with external wires by LAN cable. 
 
@@ -25,7 +25,10 @@ Electronics are set in home and are connected with external wires by LAN cable.
 * Remaining digital outputs to test against set water levels.
 * I2S for LCD display.
 * Micro USB as power source.
-* RJ45 keystone as output for buzzer, analog in and digital water level outputs.
+* RJ45 keystone as output for buzzer, analog in and digital water level outputs. 
+  * 5 wires for water levels
+  * 1 wire for analog in
+  * 2 wires for buzzer(s)
 
 # Pins
 
@@ -38,15 +41,14 @@ GPIO
 
 * D1 / GPIO5 - SCL (for LCD)
 * D2 / GPIO4 - SDA (for LCD)
-* D5 / GPIO14 - water level 1
-* D6 / GPIO12 - water level 2
-* D7 / GPIO13 - water level 3
-* D8 / GPIO15 - water level 4 (IN: GND; boot fails if HIGH)
+* D3 / GPIO0 - water level 1 (tank bottom)
+* D4 / GPIO2 - water level 2 (0.5 tank volume)
+* D5 / GPIO14 - water level 3 (0.8 tank volume)
+* D6 / GPIO12 - water level 4 (0.9 tank volume)
+* D7 / GPIO13 - water level 5 (tank full)
 
-TODO - figure out other pins
-
-* D3 / GPIO0 - buzzer (BJT base; LOW fails boot)
-* TX / GPIO1 - buzzer (BJT base)
+* RX / GPIO3 - PIR input
+* TX / GPIO1 - buzzer trigger (BJT base)
 
 # Operation logic
 

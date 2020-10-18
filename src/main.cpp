@@ -8,6 +8,8 @@ Display *display;
 WaterLevelDetector *detector;
 
 void updateLevels();
+void enableDisplay();
+void disableDisplay();
 
 void setup()
 {
@@ -23,10 +25,15 @@ void setup()
   display->printMessage("Water Mole Test");
 
   detector = new WaterLevelDetector(A0);
+  detector->addDigitalPin(D3);
+  detector->addDigitalPin(D4);
   detector->addDigitalPin(D5);
   detector->addDigitalPin(D6);
   detector->addDigitalPin(D7);
-  detector->addDigitalPin(D8);
+
+  pinMode(D9, INPUT_PULLUP);
+  attachInterrupt(digitalPinToInterrupt(D9), enableDisplay, RISING);
+  attachInterrupt(digitalPinToInterrupt(D9), disableDisplay, FALLING);
 
   Logger::message("Setup complete");
 }
@@ -41,21 +48,37 @@ void loop()
 
 void updateLevels()
 {
-  int barWidth = 3;
   int pinsNumber = detector->getDigitalPinsNumber();
+  int barWidth = (int)floor(1.0 * display->getWidth() / pinsNumber);
+
   display->printMessage("Checking level");
   detector->refresh();
 
-  char pinsText[barWidth * pinsNumber + 1];
+  char pinsText[display->getWidth() + 1];
 
   for (int i = 0; i < pinsNumber; i++)
   {
     for (int j = 0; j < barWidth; j++)
     {
-      pinsText[i * barWidth + j] = (detector->getLevel(i) < 10) ? 'X' : '-';
+      pinsText[i * barWidth + j + 1] = (detector->getLevel(i) < 10) ? '>' : '-';
     }
   }
 
-  pinsText[barWidth * pinsNumber] = '\0';
+  pinsText[0] = '[';
+  pinsText[display->getWidth() - 1] = ']';
+  pinsText[display->getWidth()] = '\0';
+
   display->printProgress(pinsText);
+}
+
+void enableDisplay()
+{
+  Logger::message("Movement detected - enable");
+  display->enable(true);
+}
+
+void disableDisplay()
+{
+  Logger::message("Movement gone - disable");
+  display->enable(false);
 }
