@@ -1,4 +1,5 @@
 #include "Display.h"
+#include "Logger.h"
 
 Display::Display(byte address, int width, int height)
 {
@@ -10,6 +11,20 @@ Display::Display(byte address, int width, int height)
     lcd->init();
     lcd->noBlink();
     lcd->noCursor();
+
+    this->enabled = false;
+    this->enable(this->enabled);
+}
+
+void Display::loop(int triggerState)
+{
+    unsigned long now = millis();
+    if (triggerState == HIGH)
+    {
+        Logger::message("PIR level HIGH");
+        this->disableTime = now + 5 * 1000;
+    }
+    this->enable(now < this->disableTime);
 }
 
 int Display::getWidth()
@@ -17,17 +32,19 @@ int Display::getWidth()
     return this->width;
 }
 
-void Display::enable(bool state)
+void Display::enable(bool enable)
 {
-    if (state)
+    if (enable && !this->enabled)
     {
         lcd->backlight();
         lcd->display();
+        this->enabled = true;
     }
-    else
+    else if (!enable && this->enabled)
     {
         lcd->noDisplay();
         lcd->noBacklight();
+        this->enabled = false;
     }
 }
 

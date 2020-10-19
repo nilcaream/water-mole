@@ -9,6 +9,8 @@ class Display
 private:
     int width;
     int height;
+    unsigned long disableTime;
+    bool enabled;
     LiquidCrystal_I2C *lcd;
     void clear(int rowNumber);
 
@@ -19,6 +21,7 @@ public:
     void printProgress(const char *text);
     void printMessage(const char *text);
     int getWidth();
+    void loop(int triggerState);
 };
 
 #endif
