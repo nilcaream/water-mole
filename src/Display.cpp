@@ -61,11 +61,17 @@ void Display::clear(int rowNumber)
     lcd->print(blank);
 }
 
-void Display::printMessage(const char *text)
+void Display::printMessage(const char *format, ...)
 {
+    char buffer[64];
+    va_list args;
+    va_start(args, format);
+    vsnprintf(buffer, 64, format, args);
+    va_end(args);
+
     this->clear(0);
     lcd->setCursor(0, 0);
-    lcd->print(text);
+    lcd->print(buffer);
 }
 
 void Display::printProgress(int value)

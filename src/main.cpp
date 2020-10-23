@@ -3,11 +3,13 @@
 #include "Display.h"
 #include "WaterLevelDetector.h"
 #include "WaterLevelUpdater.h"
+#include "SoundGenerator.h"
 #include "Logger.h"
 
 Display *display;
 WaterLevelDetector *detector;
 WaterLevelUpdater *updater;
+SoundGenerator *sound;
 
 void setup()
 {
@@ -29,7 +31,10 @@ void setup()
   detector->addDigitalPin(D6);
   detector->addDigitalPin(D7);
 
-  pinMode(D8, INPUT);
+
+  pinMode(D8, INPUT); // verify this pin
+
+  sound = new SoundGenerator(D9, display); // verify this pin
 
   updater = new WaterLevelUpdater(display, detector);
   display->enable(true);
@@ -41,5 +46,6 @@ void loop()
 {
   display->loop(digitalRead(D8));
   updater->loop();
+  sound->loop();
   delay(100);
 }

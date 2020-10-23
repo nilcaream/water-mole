@@ -47,8 +47,8 @@ GPIO
 * D6 / GPIO12 - water level 4 (0.9 tank volume)
 * D7 / GPIO13 - water level 5 (tank full)
 
-* RX / GPIO3 - PIR input
-* TX / GPIO1 - buzzer trigger (BJT base)
+* D8 / RX / GPIO3 - PIR input
+* D9 / TX / GPIO1 - buzzer trigger (BJT base)
 
 # Operation logic
 

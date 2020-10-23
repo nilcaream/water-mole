@@ -19,7 +19,7 @@ public:
     void enable(bool state);
     void printProgress(int value);
     void printProgress(const char *text);
-    void printMessage(const char *text);
+    void printMessage(const char *format, ...);
     int getWidth();
     void loop(int triggerState);
 };
