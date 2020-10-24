@@ -21,8 +21,7 @@ void Display::loop(int triggerState)
     unsigned long now = millis();
     if (triggerState == HIGH)
     {
-        Logger::message("PIR level HIGH");
-        this->disableTime = now + 5 * 1000;
+        this->disableTime = now + 15 * 1000;
     }
     this->enable(now < this->disableTime);
 }
@@ -39,12 +38,14 @@ void Display::enable(bool enable)
         lcd->backlight();
         lcd->display();
         this->enabled = true;
+        Logger::message("Display enabled");
     }
     else if (!enable && this->enabled)
     {
         lcd->noDisplay();
         lcd->noBacklight();
         this->enabled = false;
+        Logger::message("Display disabled");
     }
 }
 
@@ -72,22 +73,7 @@ void Display::printMessage(const char *format, ...)
     this->clear(0);
     lcd->setCursor(0, 0);
     lcd->print(buffer);
-}
-
-void Display::printProgress(int value)
-{
-    char text[width + 1];
-    // TODO remove hardcoded bar size of 4
-    int barWidth = value * 4;
-
-    for (int i = 0; i < width; i++)
-    {
-        text[i] = i < barWidth ? 'X' : ' ';
-    }
-    text[width] = '\0';
-
-    lcd->setCursor(0, 1);
-    lcd->print(text);
+    Logger::message("Display message: %s", buffer);
 }
 
 void Display::printProgress(const char *text)
@@ -95,4 +81,5 @@ void Display::printProgress(const char *text)
     this->clear(1);
     lcd->setCursor(0, 1);
     lcd->print(text);
+    Logger::message("Display progress: %s", text);
 }

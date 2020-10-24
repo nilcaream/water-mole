@@ -22,7 +22,7 @@ void setup()
 
   display = new Display(0x27, 16, 2);
   display->enable(true);
-  display->printMessage("Water Mole Test");
+  display->printMessage("Water Mole");
 
   detector = new WaterLevelDetector(A0);
   detector->addDigitalPin(D3);
@@ -31,20 +31,18 @@ void setup()
   detector->addDigitalPin(D6);
   detector->addDigitalPin(D7);
 
+  pinMode(D8, OUTPUT); // D8 / GPIO15 / buzzer
+  pinMode(D0, INPUT);  // D0 / GPIO16 / PIR
 
-  pinMode(D8, INPUT); // verify this pin
-
-  sound = new SoundGenerator(D9, display); // verify this pin
-
+  sound = new SoundGenerator(D8, display);
   updater = new WaterLevelUpdater(display, detector);
-  display->enable(true);
 
   Logger::message("Setup complete");
 }
 
 void loop()
 {
-  display->loop(digitalRead(D8));
+  display->loop(digitalRead(D0));
   updater->loop();
   sound->loop();
   delay(100);

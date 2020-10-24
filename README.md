@@ -39,6 +39,7 @@ Mandatory read:
 
 GPIO
 
+* D0 / GPIO16 - PIR input
 * D1 / GPIO5 - SCL (for LCD)
 * D2 / GPIO4 - SDA (for LCD)
 * D3 / GPIO0 - water level 1 (tank bottom)
@@ -46,13 +47,11 @@ GPIO
 * D5 / GPIO14 - water level 3 (0.8 tank volume)
 * D6 / GPIO12 - water level 4 (0.9 tank volume)
 * D7 / GPIO13 - water level 5 (tank full)
-
-* D8 / RX / GPIO3 - PIR input
-* D9 / TX / GPIO1 - buzzer trigger (BJT base)
+* D8 / GPIO15 - buzzer trigger (BJT base)
 
 # Operation logic
 
-The non-trivial part of the project is water level detection. This is done by reading the ground voltage on analog in pin (A0) by providing TTL output (LOW) from several digital out pins (D5 to D9).
+The non-trivial part of the project is water level detection. This is done by reading the ground voltage on analog in pin (A0) by providing TTL output (LOW) from several digital out pins (D3 to D7).
 
 Other idea is to close the circut with a TTL HIGH state. This method turned out to be not reliable bacause of varying waste water conductivity.
 

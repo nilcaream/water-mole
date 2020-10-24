@@ -17,7 +17,6 @@ private:
 public:
     Display(byte address, int width, int height);
     void enable(bool state);
-    void printProgress(int value);
     void printProgress(const char *text);
     void printMessage(const char *format, ...);
     int getWidth();

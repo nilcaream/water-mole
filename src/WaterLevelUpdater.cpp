@@ -13,7 +13,7 @@ void WaterLevelUpdater::loop()
     if (now > this->nextRefresh)
     {
         this->update();
-        this->nextRefresh = now + 3 * 1000;
+        this->nextRefresh = now + 30 * 1000;
     }
 }
 
@@ -23,7 +23,6 @@ void WaterLevelUpdater::update()
     int barWidth = (int)floor(1.0 * display->getWidth() / pinsNumber);
 
     display->printMessage("Checking level");
-    Logger::message("Checking level");
     detector->refresh();
 
     char pinsText[this->display->getWidth() + 1];

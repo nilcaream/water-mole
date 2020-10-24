@@ -34,7 +34,7 @@ void WaterLevelDetector::refresh()
     }
     yield();
     base = analogRead(this->analogPin);
-    Logger::message("Base %d", base);
+    Logger::message("Water level base %d", base);
 
     for (int pinNumber = 0; pinNumber < this->digitalPinsNumber; pinNumber++)
     {

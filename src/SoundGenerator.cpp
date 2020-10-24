@@ -13,7 +13,7 @@ void SoundGenerator::loop()
     {
         if (this->state == SOUND)
         {
-            long time = random(500, 2000);
+            long time = random(1000, 5000);
 
             noTone(this->pin);
 
@@ -23,14 +23,14 @@ void SoundGenerator::loop()
         }
         else if (this->state == PAUSE)
         {
-            long time = random(500, 2000);
+            long time = random(500, 10000);
             long frequency = this->nextFrequency();
 
             tone(this->pin, (double)frequency);
 
             this->nextActionTime = now + time;
             this->state = SOUND;
-            this->display->printMessage("Sound %dHz %dms", frequency, time);
+            this->display->printMessage("%dHz %dms", frequency, time);
         }
     }
 }
