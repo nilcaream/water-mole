@@ -61,6 +61,12 @@ Yet another option would be to create a capacitance water level meter. Expected 
 
 ![Breadboard](docs/water-mole_bb.png)
 
+# Prototypes
+
+![Prototype](docs/prototype-01.jpg)
+
+![Prototype](docs/prototype-02.jpg)
+
 # Mole circuit 
 
 Piezo electric buzzer is denoted as 1M Ohm resistor. It is in series connection with 220 Ohm resistor in case buzzer gets shorted.
