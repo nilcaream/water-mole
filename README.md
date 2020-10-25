@@ -8,13 +8,17 @@ Second project is a waste water meter. A sewage tank will contain a set of wires
 
 Electronics are set in home and are connected with external wires by LAN cable. 
 
-# Main components
+# Components
 
 * ESP8266 NodeMCU V2 - Arduino-compatible board.
 * MT3608 DC-DC Converter - to power passive piezoelectric buzzers with 12V.
 * 16x2 LCD with HD44780 controller - to display water level.
 * HC-SR501 PIR - motion detector to activate display when needed.
 * 2N2222 - NPN transistor used as a switch to activate buzzers.
+* 100 Ohm resistor - for analog input (just in case). Probably not needed.
+* 220 Ohm resistor - for buzzer BJT circuit in case of buzzer short.
+* 2.7k Ohm resistor - parallel with buzzer circuit.
+* 10k Ohm resistor - in transistor base.
 
 # I/O
 
@@ -59,6 +63,8 @@ Yet another option would be to create a capacitance water level meter. Expected 
 
 # Breadboard
 
+A bit outdated now but shows general concept of the project.
+
 ![Breadboard](docs/water-mole_bb.png)
 
 # Prototypes
@@ -66,6 +72,15 @@ Yet another option would be to create a capacitance water level meter. Expected 
 ![Prototype](docs/prototype-01.jpg)
 
 ![Prototype](docs/prototype-02.jpg)
+
+# Board
+
+GIMP-designed universal circuit board (original resolution 98x77 pixel art :). Board size 7cm x 9cm.
+
+![Components setup](docs/board-components.png)
+
+![Complete board](docs/board-wires.png)
+
 
 # Mole circuit 
 
@@ -75,4 +90,6 @@ Piezo electric buzzer is denoted as 1M Ohm resistor. It is in series connection 
 
 # Disclaimer
 
-I just realized that this project is also a C++ learning playground for me. I am a Java developer and I havn't code C++ for last 13 years. Since then I am doing full time Java and some Javascript. The code is not perfect but I don't want to fallback to C as code written as classes is more natural for me.
+This project is also a C++ learning playground for me. I am a Java developer and I haven't code C++ since 2007. Since then I am doing full time Java and some Javascript. The code is not perfect but I don't want to fallback to C as code written as classes is more natural for me. Yes, it looks like Java and follows some Java coding conventions.
+
+This is my first Arduino and in general first electronic / hardware project.
